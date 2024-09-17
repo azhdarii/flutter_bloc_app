@@ -2,11 +2,11 @@ import 'package:crypto1/repositories/day_weather_model.dart';
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 class MyApi{
-  dynamic sendRequest7days(String City) async {
+  Future<List<DayWeatherModel>> sendRequest7days(String City) async {
     List<DayWeatherModel> weatherData = [];
 
     String key = 'your key';
-    try {
+
       var response = await Dio().get(
           'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/$City',
           queryParameters: {
@@ -48,10 +48,9 @@ class MyApi{
 
 
       return weatherData;
-    } catch (e) {
 
-      print(e);
-    }
+
+
 
 
   }

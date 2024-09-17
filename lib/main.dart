@@ -59,7 +59,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // functions and variables here
 
-
+  TextEditingController textEditingController=TextEditingController();
 
 
 
@@ -84,12 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     child:BlocBuilder<WeatherBloc,WeatherState>(
                       builder: (context,state){
                         if(state is WeatherLoading){
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                         else if(state is WeatherLoaded){
                           return  Column(
                             children: [
-                              MySearchBar(),
+                              MySearchBar(textEditingController),
                               WeatherStatus(),
                               WeeklyWeather(),
                               OtherStatus()
@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         }
                         else if(state is WeatherError){
-                          return Text('weather error');
+                          return Text(state.message);
                         }
                         else return Text('nothing');
                         

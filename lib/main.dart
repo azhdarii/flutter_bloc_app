@@ -1,16 +1,23 @@
+import 'dart:async';
 import 'dart:js_interop';
+import 'package:crypto1/blocs/weather%20bloc/weather_bloc.dart';
+import 'package:crypto1/blocs/weather%20bloc/weather_state.dart';
+import 'package:crypto1/repositories/day_weather_model.dart';
+import 'package:crypto1/repositories/my_Api.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:crypto1/providers/currentTheme.dart';
-import 'package:crypto1/ui/widgets/themeSwitcher.dart';
+
+import 'package:crypto1/ui/widgets/other_status.dart';
+import 'package:crypto1/ui/widgets/searchBar.dart';
+import 'package:crypto1/ui/widgets/weather_status.dart';
+import 'package:crypto1/ui/widgets/weekly_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
-      child: const MyApp(),
-    ),
+    const MyApp(),
   );
 }
 
@@ -20,24 +27,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(builder: (context, mamad, child) {
-      var myThemeMode = (mamad.isDark) ? ThemeMode.dark : ThemeMode.light;
 
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'azhoo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
-          useMaterial3: true,
-        ),
-        darkTheme: ThemeData(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.blue, brightness: Brightness.dark)),
-        themeMode: myThemeMode,
-        home: const MyHomePage(),
-      );
-    });
+
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'weather app',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
+        useMaterial3: true,
+      ),
+      // darkTheme: ThemeData(
+      //     useMaterial3: true,
+      //     colorScheme: ColorScheme.fromSeed(
+      //         seedColor: Colors.blue, brightness: Brightness.dark)),
+      // themeMode: ThemeMode.system,
+      home: const MyHomePage(),
+    );
   }
 }
 
@@ -52,29 +58,62 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // functions and variables here
-  var counter = ValueNotifier<int>(0);
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Exchange'),
+        title: Text('Weather'),
         centerTitle: true,
-        actions: [Themeswitcher()],
       ),
       body: Expanded(
-        child: Center(
-            child: Container(
-          child: ValueListenableBuilder<int>(
-            valueListenable: counter,
-            builder: (context, jojo, child) {
-              return Text('$jojo');
-            },
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Center(
+              child: Container(
+                  height: 10000,
+                  child:BlocProvider (
+                    create: (context)=>WeatherBloc(),
+                    child:BlocBuilder<WeatherBloc,WeatherState>(
+                      builder: (context,state){
+                        if(state is WeatherLoading){
+                          return CircularProgressIndicator();
+                        }
+                        else if(state is WeatherLoaded){
+                          return  Column(
+                            children: [
+                              MySearchBar(),
+                              WeatherStatus(),
+                              WeeklyWeather(),
+                              OtherStatus()
+
+
+
+
+
+
+                            ],
+                          );
+                        }
+                        else if(state is WeatherError){
+                          return Text('weather error');
+                        }
+                        else return Text('nothing');
+                        
+                      },
+                    )
+                  )
+              )
           ),
-        )),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){counter.value++;},),
     );
   }
 }

@@ -21,7 +21,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       }
     });
 
-    add(FetchWeatherEvent('tehran'));
+    add(FetchWeatherEvent('shiraz'));
   }
 
 }

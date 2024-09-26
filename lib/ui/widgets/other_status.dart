@@ -1,35 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:crypto1/blocs/weather%20bloc/weather_state.dart';
+import 'package:crypto1/repositories/day_weather_model.dart';
 
 class OtherStatus extends StatelessWidget {
-  const OtherStatus({super.key});
+  WeatherLoaded weatherState;
+   OtherStatus(this.weatherState,{super.key});
+
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    DayWeatherModel todayWeather = weatherState.weathers[0];
+    return  Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [Text('humidity'), Text('data')],
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: [Text('humidity'), Text(todayWeather.humidity.toString()+'%')],
+            ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [Text('wind speed'), Text('data')],
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: [Text('wind speed'), Text(todayWeather.windSpeed.toString())],
+            ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [Text('sunrise'), Text('data')],
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: [Text('sunrise'), Text(todayWeather.sunrise)],
+            ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [Text('sunset'), Text('data')],
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              children: [Text('sunset'), Text(todayWeather.sunset)],
+            ),
           ),
         )
       ],

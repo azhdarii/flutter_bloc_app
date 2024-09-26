@@ -1,28 +1,40 @@
+import 'package:crypto1/blocs/weather%20bloc/weather_state.dart';
+import 'package:crypto1/repositories/day_weather_model.dart';
 import 'package:flutter/material.dart';
+import 'package:crypto1/ui/helper/icon_maker.dart';
 
 class WeatherStatus extends StatelessWidget {
-  const WeatherStatus({super.key});
+  WeatherLoaded weatherState;
+
+  WeatherStatus(this.weatherState, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    DayWeatherModel todayWeather = weatherState.weathers[0];
+
+    return Column(
       children: [
+
         Padding(
-          padding: EdgeInsets.only(bottom: 10.0, top: 30),
+          padding: const EdgeInsets.only(bottom: 10.0, top: 30),
           child: Text(
-            'shiraz',
-            style: TextStyle(fontSize: 25),
+            todayWeather.cityName,
+            style: const TextStyle(fontSize: 25),
           ),
         ),
+        Icon(size: 60,IconMaker(todayWeather.icon))
+        ,
         Padding(
-          padding: EdgeInsets.only(bottom: 10.0, ),
+          padding: EdgeInsets.only(
+            bottom: 10.0,
+          ),
           child: Text(
-            '28',
+            todayWeather.temperature.toString(),
             style: TextStyle(fontSize: 40),
           ),
         ),
         Text(
-          'clear sky',
+          todayWeather.description,
           style: TextStyle(fontSize: 20),
         ),
         Row(
@@ -31,13 +43,13 @@ class WeatherStatus extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Column(
-                children: [Text('max'), Text('40')],
+                children: [Text('max'), Text(todayWeather.tempMax.toString())],
               ),
             ),
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Column(
-                children: [Text('min'), Text('20')],
+                children: [Text('min'), Text(todayWeather.tempMin.toString())],
               ),
             )
           ],

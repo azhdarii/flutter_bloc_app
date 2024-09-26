@@ -13,7 +13,7 @@ class MyApi{
             'key': key,
             'include': 'days',
             'unitGroup': 'metric',
-            'elements': 'conditions,,temp,tempmax,tempmin,,humidity,windspeed,datetimeEpoch,sunrise,sunset'
+            'elements': 'icon,conditions,temp,tempmax,tempmin,humidity,windspeed,datetimeEpoch,sunrise,sunset'
 
             // 'elements': 'temp,tempmax,tempmin,datetimeEpoch,conditions,datetime'
           });
@@ -40,8 +40,8 @@ class MyApi{
             dayData['datetimeEpoch'] * 1000,
             isUtc: true));
 
-        dayWeatherModel = DayWeatherModel(date, dayData['conditions'], dayData['temp'],
-            dayData['tempmin'], dayData['tempmax']);
+        dayWeatherModel = DayWeatherModel(response.data['address'],date, dayData['conditions'], dayData['temp'],
+            dayData['tempmin'], dayData['tempmax'],dayData['humidity'],dayData['windspeed'],dayData['sunrise'],dayData['sunset'],dayData['icon']);
         weatherData.add(dayWeatherModel);
       }
 

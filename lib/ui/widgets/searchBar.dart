@@ -13,31 +13,27 @@ class MySearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => WeatherBloc(),
-        child:
-        BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
-          return Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  context.read<WeatherBloc>().add(
-                      FetchWeatherEvent(textEditingController.text));
-                },
-                style: const ButtonStyle(),
-                child: const Text('search'),
-              ),
-              Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                        controller: textEditingController,
-                        decoration: InputDecoration(
-                          hintText: 'insert your city',
-                        )),
-                  ))
-            ],
-          );
-        }));
+    return Row(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            context
+                .read<WeatherBloc>()
+                .add(FetchWeatherEvent(textEditingController.text));
+          },
+          style: const ButtonStyle(),
+          child: const Text('search'),
+        ),
+        Expanded(
+            child: Padding(
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+              controller: textEditingController,
+              decoration: InputDecoration(
+                hintText: 'insert your city',
+              )),
+        ))
+      ],
+    );
   }
 }

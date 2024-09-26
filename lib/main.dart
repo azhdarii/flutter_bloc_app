@@ -73,44 +73,48 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Weather'),
         centerTitle: true,
       ),
-      body: Expanded(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Center(
-              child: Container(
-                  height: 10000,
-                  child:BlocProvider (
-                    create: (context)=>WeatherBloc(),
-                    child:BlocBuilder<WeatherBloc,WeatherState>(
-                      builder: (context,state){
-                        if(state is WeatherLoading){
-                          return Center(child: CircularProgressIndicator());
-                        }
-                        else if(state is WeatherLoaded){
-                          return  Column(
-                            children: [
-                              MySearchBar(textEditingController),
-                              WeatherStatus(),
-                              WeeklyWeather(),
-                              OtherStatus()
+      body: Container(decoration: BoxDecoration(),
+        child: Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Center(
+                child: Container(
+                    height: 3000,
+                    child:BlocProvider (
+                      create: (context)=>WeatherBloc(),
+                      child:BlocBuilder<WeatherBloc,WeatherState>(
+                        builder: (context,state){
+                          if(state is WeatherLoading){
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          else if(state is WeatherLoaded){
+                            return  Column(
+                              children: [
+                                MySearchBar(textEditingController),
+                                WeatherStatus(state),
+
+                                   Container(width:MediaQuery.of(context).size.width,height: 150,child: WeeklyWeather(state)),
+
+                                OtherStatus(state)
 
 
 
 
 
 
-                            ],
-                          );
-                        }
-                        else if(state is WeatherError){
-                          return Text(state.message);
-                        }
-                        else return Text('nothing');
-                        
-                      },
+                              ],
+                            );
+                          }
+                          else if(state is WeatherError){
+                            return Text(state.message);
+                          }
+                          else return Text('nothing');
+
+                        },
+                      )
                     )
-                  )
-              )
+                )
+            ),
           ),
         ),
       ),

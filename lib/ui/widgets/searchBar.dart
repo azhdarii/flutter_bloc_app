@@ -41,6 +41,7 @@ class MySearchBar extends StatelessWidget {
     decoration: InputDecoration(
     hintText: AppLocalizations.of(context)!.searchHint,
     hintStyle: TextStyle(color: Colors.grey[50]),
+    focusColor: Colors.white,
     border: OutlineInputBorder(
     borderSide: BorderSide(),
     borderRadius: BorderRadius.circular(20))))

@@ -109,14 +109,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-          child: Column(
-        children: [
-          Text('language'),
-        ],
-      )),
+      // drawer: Drawer(
+      //     child: Column(
+      //   children: [
+      //     Text('language'),
+      //   ],
+      // )),
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
               onPressed: () {
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 }).toList();
               })
         ],
-        title: Text(AppLocalizations.of(context)!.helloWorld),
+        title: Text(AppLocalizations.of(context)!.weather),
         centerTitle: true,
       ),
       body: BlocProvider(
@@ -153,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     scrollDirection: Axis.vertical,
                     child: Center(
                         child: Container(
-                      height: 3000,
+                      height: 1000,
                       child: w(state, textEditingController, context),
                     )
                     )
@@ -168,23 +168,23 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 String isCurrentTimeAfter(String timeString) {
-  // Parse the input string as a time
+
   DateTime now = DateTime.now();
   DateFormat format = DateFormat('HH:mm:ss');
 
-  // Parse the time string into DateTime (use today's date to compare)
+
   DateTime inputTime = format.parse(timeString);
 
-  // Replace the date in inputTime with today's date
+
   inputTime = DateTime(now.year, now.month, now.day, inputTime.hour,
       inputTime.minute, inputTime.second);
 
-  // Compare the two times
+
   if (now.isAfter(inputTime)) {
     return 'assets/images/1 (1).jpg';
   } else {
     return 'assets/images/1 (2).jpg';
-  } // Returns true if current time is after the input time
+  }
 }
 
 Widget w(state, textEditingController, context) {
@@ -197,12 +197,18 @@ Widget w(state, textEditingController, context) {
   } else if (state is WeatherLoaded) {
     return Column(
       children: [
-        MySearchBar(textEditingController),
+        Padding(
+          padding: const EdgeInsets.only(top:8.0,bottom: 15),
+          child: MySearchBar(textEditingController),
+        ),
         WeatherStatus(state),
-        Container(
-            width: MediaQuery.of(context).size.width,
-            height: 150,
-            child: WeeklyWeather(state)),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 150,
+              child: WeeklyWeather(state)),
+        ),
         OtherStatus(state)
       ],
     );

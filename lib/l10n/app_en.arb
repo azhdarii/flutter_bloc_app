@@ -1,0 +1,16 @@
+{
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  },
+  "weather": "Weather",
+  "searchHint": "insert your city",
+  "search": "search",
+  "max": "max",
+  "min": "min",
+  "sunset": "sunset",
+  "sunrise": "sunrise",
+  "windSpeed": "wind speed",
+  "humidity": "humidity"
+
+}

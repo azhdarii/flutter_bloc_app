@@ -1,0 +1,12 @@
+{
+    "helloWorld": "سلام دنیا",
+    "weather": "آب و هوا",
+    "searchHint": "شهر خود را وارد کنید",
+    "search": "جست‌وجو",
+    "max": "بیشینه",
+    "min": "کمینه",
+    "sunset": "غروب",
+    "sunrise": "طلوع",
+    "windSpeed": " سرعت باد",
+    "humidity": "رطوبت"
+}

@@ -32,14 +32,14 @@ class WeeklyWeather extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(size: 40,IconMaker(daysWeather[index].icon)),
                       ),
-                      Text(daysWeather[index].icon,overflow: TextOverflow.fade,maxLines: 1,),
+                      Text(daysWeather[index].description,overflow: TextOverflow.fade,maxLines: 1,),
                       Padding(
                         padding: const EdgeInsets.only(top: 5),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(daysWeather[index].tempMax.toString()),
-                            Text(daysWeather[index].tempMin.toString())
+                            Text(daysWeather[index].tempMax.toString()+"\u00b0"),
+                            Text(daysWeather[index].tempMin.toString()+"\u00b0")
                           ],
                         ),
                       )

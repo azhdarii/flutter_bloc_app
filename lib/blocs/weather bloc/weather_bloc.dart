@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:bloc/bloc.dart';
 import 'package:crypto1/blocs/weather%20bloc/weather_event.dart';
 import 'package:crypto1/blocs/weather%20bloc/weather_state.dart';
@@ -13,7 +15,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       MyApi myApi = MyApi();
       emit(WeatherLoading());
       try {
-        dayWeatherModels =await myApi.sendRequest7days(event.cityName);
+        dayWeatherModels =await myApi.sendRequest7days(event.cityName,event.currentLanguage);
         print(dayWeatherModels);
         emit(WeatherLoaded(dayWeatherModels));
       } catch (e) {
@@ -21,7 +23,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       }
     });
 
-    add(FetchWeatherEvent('shiraz'));
+    add(FetchWeatherEvent('shiraz','en'));
   }
 
 }

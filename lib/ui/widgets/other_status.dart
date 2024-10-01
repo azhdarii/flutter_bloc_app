@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:crypto1/blocs/weather%20bloc/weather_state.dart';
 import 'package:crypto1/repositories/day_weather_model.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class OtherStatus extends StatelessWidget {
   WeatherLoaded weatherState;
@@ -17,7 +20,7 @@ class OtherStatus extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
-              children: [Text('humidity'), Text(todayWeather.humidity.toString()+'%')],
+              children: [Text(AppLocalizations.of(context)!.humidity), Text(todayWeather.humidity.toString()+'%')],
             ),
           ),
         ),
@@ -25,7 +28,7 @@ class OtherStatus extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
-              children: [Text('wind speed'), Text(todayWeather.windSpeed.toString())],
+              children: [Text(AppLocalizations.of(context)!.windSpeed), Text(todayWeather.windSpeed.toString())],
             ),
           ),
         ),
@@ -33,7 +36,7 @@ class OtherStatus extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
-              children: [Text('sunrise'), Text(todayWeather.sunrise)],
+              children: [Text(AppLocalizations.of(context)!.sunrise), Text(todayWeather.sunrise)],
             ),
           ),
         ),
@@ -41,7 +44,7 @@ class OtherStatus extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
-              children: [Text('sunset'), Text(todayWeather.sunset)],
+              children: [Text(AppLocalizations.of(context)!.sunset), Text(todayWeather.sunset)],
             ),
           ),
         )

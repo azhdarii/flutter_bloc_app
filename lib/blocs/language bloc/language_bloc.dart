@@ -4,7 +4,7 @@ import 'package:crypto1/blocs/language%20bloc/language_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
-  LanguageBloc() : super(EnglishState()) {
+  LanguageBloc() : super(FarsiState()) {
     on<ChangeLanguageEvent>(
       (event, emit) {
         if (event.Language == 'fa') {

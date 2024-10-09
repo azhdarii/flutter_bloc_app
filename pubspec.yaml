@@ -44,6 +44,7 @@ dependencies:
   dio: ^5.5.0+1
   progress_indicators: ^1.0.0
   intl: any
+  rive: 0.11.11
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,9 @@ flutter:
   assets:
      - assets/images/1 (1).jpg
      - assets/images/1 (2).jpg
+     - assets/rive/cloud.riv
+     - assets/rive/sun.riv
+     - assets/rive/cloudy.riv
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

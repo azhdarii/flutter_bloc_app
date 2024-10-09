@@ -1,5 +1,3 @@
-import 'dart:async';
-import 'dart:js_interop';
 import 'package:crypto1/blocs/language%20bloc/language_bloc.dart';
 import 'package:crypto1/blocs/language%20bloc/language_event.dart';
 import 'package:crypto1/blocs/language%20bloc/language_state.dart';
@@ -25,6 +23,7 @@ import 'package:progress_indicators/progress_indicators.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:rive/rive.dart';
 
 void main() {
   runApp(MultiBlocProvider(
@@ -146,7 +145,9 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, state) => Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(isCurrentTimeAfter(state is WeatherLoaded?state.weathers[0].sunset:'00:00:00')),
+                    image: AssetImage(isCurrentTimeAfter(state is WeatherLoaded
+                        ? state.weathers[0].sunset
+                        : '00:00:00')),
                     fit: BoxFit.cover)),
             child: Expanded(
                 child: SingleChildScrollView(
@@ -155,10 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                       height: 1000,
                       child: w(state, textEditingController, context),
-                    )
-                    )
-                )
-            ),
+                    )))),
           ),
         ),
       ),
@@ -168,17 +166,13 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 String isCurrentTimeAfter(String timeString) {
-
   DateTime now = DateTime.now();
   DateFormat format = DateFormat('HH:mm:ss');
 
-
   DateTime inputTime = format.parse(timeString);
-
 
   inputTime = DateTime(now.year, now.month, now.day, inputTime.hour,
       inputTime.minute, inputTime.second);
-
 
   if (now.isAfter(inputTime)) {
     return 'assets/images/1 (1).jpg';
@@ -198,7 +192,7 @@ Widget w(state, textEditingController, context) {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top:8.0,bottom: 15),
+          padding: const EdgeInsets.only(top: 8.0, bottom: 15),
           child: MySearchBar(textEditingController),
         ),
         WeatherStatus(state),
@@ -209,11 +203,44 @@ Widget w(state, textEditingController, context) {
               height: 150,
               child: WeeklyWeather(state)),
         ),
-        OtherStatus(state)
+        OtherStatus(state),
+
       ],
     );
   } else if (state is WeatherError) {
-    return Text(state.message);
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text('Error: \n' + state.message),
+            ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<WeatherBloc>()
+                      .add(FetchWeatherEvent('shiraz', 'en'));
+                },
+                child: Text('reload'))
+          ],
+        ),
+      ),
+    );
   } else
-    return Text('nothing');
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text('Nothing\n'),
+            ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<WeatherBloc>()
+                      .add(FetchWeatherEvent('shiraz', 'en'));
+                },
+                child: Text('reload'))
+          ],
+        ),
+      ),
+    );
 }

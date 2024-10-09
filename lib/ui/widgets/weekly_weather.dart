@@ -24,25 +24,22 @@ class WeeklyWeather extends StatelessWidget {
               width: 120,
               child: Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(daysWeather[index].day),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(size: 40,IconMaker(daysWeather[index].icon)),
-                      ),
+                       Icon(size: 40,IconMaker(daysWeather[index].icon)),
+
                       Text(daysWeather[index].description,overflow: TextOverflow.fade,maxLines: 1,),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Row(
+                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(daysWeather[index].tempMax.toString()+"\u00b0"),
                             Text(daysWeather[index].tempMin.toString()+"\u00b0")
                           ],
                         ),
-                      )
+
                     ],
                   ),
                 ),

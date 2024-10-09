@@ -1,4 +1,3 @@
-import 'dart:js_interop';
 
 import 'package:bloc/bloc.dart';
 import 'package:crypto1/blocs/weather%20bloc/weather_event.dart';
@@ -23,7 +22,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       }
     });
 
-    add(FetchWeatherEvent('shiraz','en'));
+    add(FetchWeatherEvent('شیراز','fa'));
   }
 
 }

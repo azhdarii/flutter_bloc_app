@@ -1,9 +1,9 @@
 
 import 'package:bloc/bloc.dart';
-import 'package:crypto1/blocs/weather%20bloc/weather_event.dart';
-import 'package:crypto1/blocs/weather%20bloc/weather_state.dart';
-import 'package:crypto1/repositories/day_weather_model.dart';
-import 'package:crypto1/repositories/my_Api.dart';
+import 'package:crypto1/presentation/blocs/weather%20bloc/weather_event.dart';
+import 'package:crypto1/presentation/blocs/weather%20bloc/weather_state.dart';
+import 'package:crypto1/data/models/day_weather_model.dart';
+import 'package:crypto1/data/data-sources/remote/my_Api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {

@@ -1,22 +1,22 @@
-import 'package:crypto1/blocs/language%20bloc/language_bloc.dart';
-import 'package:crypto1/blocs/language%20bloc/language_event.dart';
-import 'package:crypto1/blocs/language%20bloc/language_state.dart';
-import 'package:crypto1/blocs/theme%20bloc/theme_bloc.dart';
-import 'package:crypto1/blocs/theme bloc/theme_state.dart';
-import 'package:crypto1/blocs/theme%20bloc/theme_event.dart';
-import 'package:crypto1/blocs/weather%20bloc/weather_bloc.dart';
-import 'package:crypto1/blocs/weather%20bloc/weather_event.dart';
-import 'package:crypto1/blocs/weather%20bloc/weather_state.dart';
-import 'package:crypto1/repositories/day_weather_model.dart';
-import 'package:crypto1/repositories/my_Api.dart';
+import 'package:crypto1/presentation/blocs/language%20bloc/language_bloc.dart';
+import 'package:crypto1/presentation/blocs/language%20bloc/language_event.dart';
+import 'package:crypto1/presentation/blocs/language%20bloc/language_state.dart';
+import 'package:crypto1/presentation/blocs/theme%20bloc/theme_bloc.dart';
+import 'package:crypto1/presentation/blocs/theme bloc/theme_state.dart';
+import 'package:crypto1/presentation/blocs/theme%20bloc/theme_event.dart';
+import 'package:crypto1/presentation/blocs/weather%20bloc/weather_bloc.dart';
+import 'package:crypto1/presentation/blocs/weather%20bloc/weather_event.dart';
+import 'package:crypto1/presentation/blocs/weather%20bloc/weather_state.dart';
+import 'package:crypto1/data/models/day_weather_model.dart';
+import 'package:crypto1/data/data-sources/remote/my_Api.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:crypto1/ui/widgets/other_status.dart';
-import 'package:crypto1/ui/widgets/searchBar.dart';
-import 'package:crypto1/ui/widgets/weather_status.dart';
-import 'package:crypto1/ui/widgets/weekly_weather.dart';
+import 'package:crypto1/presentation/widgets/other_status.dart';
+import 'package:crypto1/presentation/widgets/searchBar.dart';
+import 'package:crypto1/presentation/widgets/weather_status.dart';
+import 'package:crypto1/presentation/widgets/weekly_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:progress_indicators/progress_indicators.dart';

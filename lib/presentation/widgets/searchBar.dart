@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:crypto1/blocs/weather bloc/weather_bloc.dart';
-import 'package:crypto1/blocs/weather bloc/weather_event.dart';
-import 'package:crypto1/blocs/weather bloc/weather_state.dart';
+import 'package:crypto1/presentation/blocs/weather bloc/weather_bloc.dart';
+import 'package:crypto1/presentation/blocs/weather bloc/weather_event.dart';
+import 'package:crypto1/presentation/blocs/weather bloc/weather_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

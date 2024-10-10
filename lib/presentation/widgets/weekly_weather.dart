@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:crypto1/blocs/weather%20bloc/weather_state.dart';
-import 'package:crypto1/repositories/day_weather_model.dart';
-import 'package:crypto1/ui/helper/icon_maker.dart';
+import 'package:crypto1/presentation/blocs/weather%20bloc/weather_state.dart';
+import 'package:crypto1/data/models/day_weather_model.dart';
+import 'package:crypto1/presentation/helper/icon_maker.dart';
 
 class WeeklyWeather extends StatelessWidget {
   WeatherLoaded weatherState;

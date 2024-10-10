@@ -1,4 +1,4 @@
-import 'package:crypto1/repositories/day_weather_model.dart';
+import 'package:crypto1/data/models/day_weather_model.dart';
 
 abstract class WeatherState{}
 class WeatherLoading extends WeatherState{}
